@@ -37,4 +37,6 @@ dependencies {
     api "org.jetbrains.anko:anko-support-v4-commons:$anko_version"
     api "org.jetbrains.anko:anko-appcompat-v7-commons:$anko_version"
     api "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    api "io.reactivex:rxkotlin:$rx_kotlin_version"
+    api "io.reactivex:rxandroid:$rx_android_version"
 }
