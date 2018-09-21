@@ -28,12 +28,10 @@ open class BaseMvpActivity<T : BasePresenter<*>> : BaseActivity(), BaseView {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-
-    override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
-        super.onCreate(savedInstanceState, persistentState)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
         initActivityInjection()
     }
-
     private fun initActivityInjection() {
         mActivityComponent = DaggerActivityComponent.builder()
                 .appComponent((application as BaseApplication).appComponent)
