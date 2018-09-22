@@ -1,4 +1,4 @@
-package com.yiding.kotlin.base.ui.activity
+package com.yiding.kotlin.base.ui.fragment
 
 import android.os.Bundle
 import com.yiding.kotlin.base.common.BaseApplication
@@ -10,7 +10,7 @@ import com.yiding.kotlin.base.presenter.BasePresenter
 import com.yiding.kotlin.base.presenter.view.BaseView
 import javax.inject.Inject
 
-abstract class BaseMvpActivity<T : BasePresenter<*>> : BaseActivity(), BaseView {
+abstract class BaseMvpFragment<T : BasePresenter<*>> : BaseFragment(), BaseView {
 
     @Inject
     lateinit var mPresenter: T
@@ -38,8 +38,8 @@ abstract class BaseMvpActivity<T : BasePresenter<*>> : BaseActivity(), BaseView 
 
     private fun initActivityInjection() {
         mActivityComponent = DaggerActivityComponent.builder()
-                .appComponent((application as BaseApplication).appComponent)
-                .activityModule(ActivityModule(this))
+                .appComponent((requireActivity().application as BaseApplication).appComponent)
+                .activityModule(ActivityModule(requireActivity()))
                 .lifeCycleProviderModule(LifeCycleProviderModule(this))
                 .build()
     }
