@@ -1,11 +1,11 @@
 package com.yiding.kotlin.base.ui.activity
 
 import android.os.Bundle
-import android.os.PersistableBundle
 import com.yiding.kotlin.base.common.BaseApplication
 import com.yiding.kotlin.base.injection.component.ActivityComponent
 import com.yiding.kotlin.base.injection.component.DaggerActivityComponent
 import com.yiding.kotlin.base.injection.module.ActivityModule
+import com.yiding.kotlin.base.injection.module.LifeCycleProviderModule
 import com.yiding.kotlin.base.presenter.BasePresenter
 import com.yiding.kotlin.base.presenter.view.BaseView
 import javax.inject.Inject
@@ -35,6 +35,8 @@ open class BaseMvpActivity<T : BasePresenter<*>> : BaseActivity(), BaseView {
     private fun initActivityInjection() {
         mActivityComponent = DaggerActivityComponent.builder()
                 .appComponent((application as BaseApplication).appComponent)
-                .activityModule(ActivityModule(this)).build()
+                .activityModule(ActivityModule(this))
+                .lifeCycleProviderModule(LifeCycleProviderModule(this))
+                .build()
     }
 }
