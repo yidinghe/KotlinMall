@@ -3,7 +3,7 @@ package com.yiding.kotlin.base.rx
 import com.yiding.kotlin.base.presenter.view.BaseView
 import rx.Subscriber
 
-open class BaseSubscriber<T>(private val baseView: BaseView): Subscriber<T>() {
+open class BaseSubscriber<T>(private val baseView: BaseView) : Subscriber<T>() {
     override fun onNext(t: T) {
 
     }
@@ -14,5 +14,8 @@ open class BaseSubscriber<T>(private val baseView: BaseView): Subscriber<T>() {
 
     override fun onError(e: Throwable?) {
         baseView.hideLoading()
+        if (e is BaseException) {
+            baseView.onError(e.msg)
+        }
     }
 }

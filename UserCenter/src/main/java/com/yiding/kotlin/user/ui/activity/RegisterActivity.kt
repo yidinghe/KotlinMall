@@ -1,7 +1,9 @@
 package com.yiding.kotlin.user.ui.activity
 
 import android.os.Bundle
+import android.view.View
 import com.yiding.kotlin.base.common.AppManager
+import com.yiding.kotlin.base.ext.enable
 import com.yiding.kotlin.base.ext.onClick
 import com.yiding.kotlin.base.ui.activity.BaseMvpActivity
 import com.yiding.kotlin.user.R
@@ -12,7 +14,7 @@ import com.yiding.kotlin.user.presenter.view.RegisterView
 import kotlinx.android.synthetic.main.activity_register.*
 import org.jetbrains.anko.toast
 
-class RegisterActivity : BaseMvpActivity<RegisterPresenter>(), RegisterView {
+class RegisterActivity : BaseMvpActivity<RegisterPresenter>(), RegisterView, View.OnClickListener {
 
     private var pressTime: Long = 0
 
@@ -20,13 +22,17 @@ class RegisterActivity : BaseMvpActivity<RegisterPresenter>(), RegisterView {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
 
-        mRegisterBtn.onClick {
-            mPresenter.register(mMobileEt.text.toString(), mVerifyCodeEt.text.toString(), mPwdEt.text.toString())
-        }
+        initView()
+    }
 
-        mGetVerifyCodeBtn.onClick {
-            mGetVerifyCodeBtn.requestSendVerifyNumber()
-        }
+    private fun initView() {
+        mRegisterBtn.enable(mMobileEt) { isBtnEnable() }
+        mRegisterBtn.enable(mVerifyCodeEt) { isBtnEnable() }
+        mRegisterBtn.enable(mPwdEt) { isBtnEnable() }
+        mRegisterBtn.enable(mPwdConfirmEt) { isBtnEnable() }
+
+        mVerifyCodeBtn.setOnClickListener(this)
+        mRegisterBtn.setOnClickListener(this)
     }
 
     override fun injectComponent() {
@@ -47,5 +53,25 @@ class RegisterActivity : BaseMvpActivity<RegisterPresenter>(), RegisterView {
         } else {
             AppManager.instance.exitApp(this)
         }
+    }
+
+    override fun onClick(view: View) {
+        when (view.id) {
+            R.id.mVerifyCodeBtn -> {
+                mVerifyCodeBtn.requestSendVerifyNumber()
+                toast("发送验证码成功")
+            }
+
+            R.id.mRegisterBtn -> {
+                mPresenter.register(mMobileEt.text.toString(), mVerifyCodeEt.text.toString(), mPwdEt.text.toString())
+            }
+        }
+    }
+
+    private fun isBtnEnable(): Boolean {
+        return mMobileEt.text.isNullOrEmpty().not() &&
+                mVerifyCodeEt.text.isNullOrEmpty().not() &&
+                mPwdEt.text.isNullOrEmpty().not() &&
+                mPwdConfirmEt.text.isNullOrEmpty().not()
     }
 }
