@@ -8,18 +8,25 @@ import com.yiding.kotlin.base.injection.module.ActivityModule
 import com.yiding.kotlin.base.injection.module.LifeCycleProviderModule
 import com.yiding.kotlin.base.presenter.BasePresenter
 import com.yiding.kotlin.base.presenter.view.BaseView
+import com.yiding.kotlin.base.widgets.ProgressLoading
 import javax.inject.Inject
 
 abstract class BaseMvpActivity<T : BasePresenter<*>> : BaseActivity(), BaseView {
 
     @Inject
     lateinit var mPresenter: T
+
     lateinit var mActivityComponent: ActivityComponent
+
+    private lateinit var mLoadingDialog: ProgressLoading
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         initActivityInjection()
         injectComponent()
+
+        mLoadingDialog = ProgressLoading.create(this)
     }
 
     abstract fun injectComponent()
@@ -33,9 +40,11 @@ abstract class BaseMvpActivity<T : BasePresenter<*>> : BaseActivity(), BaseView 
     }
 
     override fun showLoading() {
+        mLoadingDialog.showLoading()
     }
 
     override fun hideLoading() {
+        mLoadingDialog.hideLoading()
     }
 
     override fun onError() {
