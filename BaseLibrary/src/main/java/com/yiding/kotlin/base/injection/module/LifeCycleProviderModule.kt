@@ -7,8 +7,8 @@ import dagger.Provides
 @Module
 class LifeCycleProviderModule(private val lifecycleProvider: LifecycleProvider<*>) {
 
-   @Provides
-   fun providesLifecycleProvider() : LifecycleProvider<*> {
-       return lifecycleProvider
-   }
+    @Provides
+    fun providesLifecycleProvider(): LifecycleProvider<*> {
+        return lifecycleProvider
+    }
 }

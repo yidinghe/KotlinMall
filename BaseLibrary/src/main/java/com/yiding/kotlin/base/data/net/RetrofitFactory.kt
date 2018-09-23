@@ -21,29 +21,29 @@ class RetrofitFactory private constructor() {
     init {
         interceptor = Interceptor { chain ->
             val request = chain.request()
-                    .newBuilder()
-                    .addHeader("Content_Type", "application/json")
-                    .addHeader("charset", "UTF-8")
-                    .build()
+                .newBuilder()
+                .addHeader("Content_Type", "application/json")
+                .addHeader("charset", "UTF-8")
+                .build()
 
             chain.proceed(request)
         }
 
         retrofit = Retrofit.Builder()
-                .baseUrl(BaseConstant.SERVER_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                .client(initClient())
-                .build()
+            .baseUrl(BaseConstant.SERVER_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+            .client(initClient())
+            .build()
     }
 
     private fun initClient(): OkHttpClient {
         return OkHttpClient.Builder()
-                .addInterceptor(interceptor)
-                .addInterceptor(initLogInterceptor())
-                .connectTimeout(10, TimeUnit.SECONDS)
-                .readTimeout(10, TimeUnit.SECONDS)
-                .build()
+            .addInterceptor(interceptor)
+            .addInterceptor(initLogInterceptor())
+            .connectTimeout(10, TimeUnit.SECONDS)
+            .readTimeout(10, TimeUnit.SECONDS)
+            .build()
     }
 
     private fun initLogInterceptor(): Interceptor {

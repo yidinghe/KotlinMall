@@ -9,7 +9,10 @@ import com.yiding.kotlin.base.injection.module.LifeCycleProviderModule
 import dagger.Component
 
 @ActivityScope
-@Component(dependencies = [AppComponent::class], modules = [ActivityModule::class, LifeCycleProviderModule::class])
+@Component(
+    dependencies = [AppComponent::class],
+    modules = [ActivityModule::class, LifeCycleProviderModule::class]
+)
 interface ActivityComponent {
     fun activity(): Activity
     fun context(): Context

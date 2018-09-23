@@ -3,7 +3,6 @@ package com.yiding.kotlin.user.ui.activity
 import android.os.Bundle
 import android.view.View
 import com.yiding.kotlin.base.ext.enable
-import com.yiding.kotlin.base.ext.onClick
 import com.yiding.kotlin.base.ui.activity.BaseMvpActivity
 import com.yiding.kotlin.user.R
 import com.yiding.kotlin.user.data.protocol.UserInfo
@@ -35,7 +34,7 @@ class LoginActivity : BaseMvpActivity<LoginPresenter>(), LoginView, View.OnClick
 
     override fun injectComponent() {
         DaggerUserComponent.builder().activityComponent(mActivityComponent)
-                .userModule(UserModule()).build().inject(this)
+            .userModule(UserModule()).build().inject(this)
         mPresenter.mView = this
     }
 

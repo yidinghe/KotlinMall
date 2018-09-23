@@ -19,13 +19,13 @@ class UserServiceImpl @Inject constructor() : UserService {
     override fun register(mobile: String, pwd: String, verifyCode: String): Observable<Boolean> {
 
         return repository
-                .register(mobile, pwd, verifyCode)
-                .convertBoolean()
+            .register(mobile, pwd, verifyCode)
+            .convertBoolean()
     }
 
     override fun login(mobile: String, pwd: String, pushId: String): Observable<UserInfo> {
         return repository
-                .login(mobile, pwd, pushId)
-                .convert()
+            .login(mobile, pwd, pushId)
+            .convert()
     }
 }

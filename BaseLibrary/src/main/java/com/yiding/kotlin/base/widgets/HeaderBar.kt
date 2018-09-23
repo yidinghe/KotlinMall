@@ -11,7 +11,7 @@ import com.yiding.kotlin.base.ext.onClick
 import kotlinx.android.synthetic.main.layout_header_bar.view.*
 
 class HeaderBar @JvmOverloads constructor(
-        context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
+    context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 ) : FrameLayout(context, attrs, defStyleAttr) {
 
     private var isShowBack = true

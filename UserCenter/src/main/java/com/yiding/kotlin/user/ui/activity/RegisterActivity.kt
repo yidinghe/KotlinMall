@@ -37,7 +37,7 @@ class RegisterActivity : BaseMvpActivity<RegisterPresenter>(), RegisterView, Vie
 
     override fun injectComponent() {
         DaggerUserComponent.builder().activityComponent(mActivityComponent)
-                .userModule(UserModule()).build().inject(this)
+            .userModule(UserModule()).build().inject(this)
         mPresenter.mView = this
     }
 
@@ -63,7 +63,11 @@ class RegisterActivity : BaseMvpActivity<RegisterPresenter>(), RegisterView, Vie
             }
 
             R.id.mRegisterBtn -> {
-                mPresenter.register(mMobileEt.text.toString(), mVerifyCodeEt.text.toString(), mPwdEt.text.toString())
+                mPresenter.register(
+                    mMobileEt.text.toString(),
+                    mVerifyCodeEt.text.toString(),
+                    mPwdEt.text.toString()
+                )
             }
         }
     }

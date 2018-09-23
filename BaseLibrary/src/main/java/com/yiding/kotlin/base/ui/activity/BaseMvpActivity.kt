@@ -34,10 +34,10 @@ abstract class BaseMvpActivity<T : BasePresenter<*>> : BaseActivity(), BaseView 
 
     private fun initActivityInjection() {
         mActivityComponent = DaggerActivityComponent.builder()
-                .appComponent((application as BaseApplication).appComponent)
-                .activityModule(ActivityModule(this))
-                .lifeCycleProviderModule(LifeCycleProviderModule(this))
-                .build()
+            .appComponent((application as BaseApplication).appComponent)
+            .activityModule(ActivityModule(this))
+            .lifeCycleProviderModule(LifeCycleProviderModule(this))
+            .build()
     }
 
     override fun showLoading() {

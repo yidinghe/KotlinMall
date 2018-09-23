@@ -27,10 +27,10 @@ abstract class BaseMvpFragment<T : BasePresenter<*>> : BaseFragment(), BaseView 
 
     private fun initActivityInjection() {
         mActivityComponent = DaggerActivityComponent.builder()
-                .appComponent((requireActivity().application as BaseApplication).appComponent)
-                .activityModule(ActivityModule(requireActivity()))
-                .lifeCycleProviderModule(LifeCycleProviderModule(this))
-                .build()
+            .appComponent((requireActivity().application as BaseApplication).appComponent)
+            .activityModule(ActivityModule(requireActivity()))
+            .lifeCycleProviderModule(LifeCycleProviderModule(this))
+            .build()
     }
 
     override fun showLoading() {
