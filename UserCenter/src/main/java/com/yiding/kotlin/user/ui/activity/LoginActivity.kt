@@ -45,7 +45,8 @@ class LoginActivity : BaseMvpActivity<LoginPresenter>(), LoginView, View.OnClick
                 startActivity<RegisterActivity>()
             }
             R.id.mLoginBtn -> {
-                mPresenter.login(mMobileEt.text.toString(), mPwdEt.text.toString(), "")
+                //mPresenter.login(mMobileEt.text.toString(), mPwdEt.text.toString(), "")
+                startActivity<UserInfoActivity>()
             }
             R.id.mForgetPwdTv -> {
                 startActivity<ForgetPwdActivity>()
