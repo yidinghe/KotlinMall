@@ -28,6 +28,7 @@ class LoginActivity : BaseMvpActivity<LoginPresenter>(), LoginView, View.OnClick
         mLoginBtn.enable(mPwdEt) { isBtnEnable() }
 
         mLoginBtn.setOnClickListener(this)
+        mForgetPwdTv.setOnClickListener(this)
 
         mHeaderBar.getRightView().setOnClickListener(this)
     }
@@ -38,10 +39,6 @@ class LoginActivity : BaseMvpActivity<LoginPresenter>(), LoginView, View.OnClick
         mPresenter.mView = this
     }
 
-    override fun onLoginResult(result: UserInfo) {
-        toast("登录成功")
-    }
-
     override fun onClick(view: View) {
         when (view.id) {
             R.id.mRightTv -> {
@@ -50,11 +47,18 @@ class LoginActivity : BaseMvpActivity<LoginPresenter>(), LoginView, View.OnClick
             R.id.mLoginBtn -> {
                 mPresenter.login(mMobileEt.text.toString(), mPwdEt.text.toString(), "")
             }
+            R.id.mForgetPwdTv -> {
+                startActivity<ForgetPwdActivity>()
+            }
         }
     }
 
     private fun isBtnEnable(): Boolean {
         return mMobileEt.text.isNullOrEmpty().not() &&
                 mPwdEt.text.isNullOrEmpty().not()
+    }
+
+    override fun onLoginResult(result: UserInfo) {
+        toast("登录成功")
     }
 }

@@ -2,8 +2,6 @@ package com.yiding.kotlin.user.service.impl
 
 import com.yiding.kotlin.base.ext.convert
 import com.yiding.kotlin.base.ext.convertBoolean
-import com.yiding.kotlin.base.rx.BaseException
-import com.yiding.kotlin.base.rx.BaseFuncBoolean
 import com.yiding.kotlin.user.data.protocol.UserInfo
 import com.yiding.kotlin.user.data.repository.UserRepository
 import com.yiding.kotlin.user.service.UserService
@@ -12,12 +10,10 @@ import javax.inject.Inject
 
 class UserServiceImpl @Inject constructor() : UserService {
 
-
     @Inject
     lateinit var repository: UserRepository
 
     override fun register(mobile: String, pwd: String, verifyCode: String): Observable<Boolean> {
-
         return repository
             .register(mobile, pwd, verifyCode)
             .convertBoolean()
@@ -28,4 +24,17 @@ class UserServiceImpl @Inject constructor() : UserService {
             .login(mobile, pwd, pushId)
             .convert()
     }
+
+    override fun forgetPwd(mobile: String, verifyCode: String): Observable<Boolean> {
+        return repository
+            .forgetPwd(mobile, verifyCode)
+            .convertBoolean()
+    }
+
+    override fun resetPwd(mobile: String, pwd: String): Observable<Boolean> {
+        return repository
+            .resetPwd(mobile, pwd)
+            .convertBoolean()
+    }
+
 }

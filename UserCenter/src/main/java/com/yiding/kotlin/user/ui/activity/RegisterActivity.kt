@@ -41,10 +41,6 @@ class RegisterActivity : BaseMvpActivity<RegisterPresenter>(), RegisterView, Vie
         mPresenter.mView = this
     }
 
-    override fun onRegisterResult(result: String) {
-        toast(result)
-    }
-
     override fun onBackPressed() {
         val time = System.currentTimeMillis()
         if (time - pressTime > 2000) {
@@ -77,5 +73,9 @@ class RegisterActivity : BaseMvpActivity<RegisterPresenter>(), RegisterView, Vie
                 mVerifyCodeEt.text.isNullOrEmpty().not() &&
                 mPwdEt.text.isNullOrEmpty().not() &&
                 mPwdConfirmEt.text.isNullOrEmpty().not()
+    }
+
+    override fun onRegisterResult(result: String) {
+        toast(result)
     }
 }
