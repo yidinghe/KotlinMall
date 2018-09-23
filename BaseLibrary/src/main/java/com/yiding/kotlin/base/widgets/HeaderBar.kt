@@ -1,10 +1,13 @@
 package com.yiding.kotlin.base.widgets
 
+import android.app.Activity
 import android.content.Context
 import android.util.AttributeSet
 import android.view.View
 import android.widget.FrameLayout
+import android.widget.TextView
 import com.yiding.kotlin.base.R
+import com.yiding.kotlin.base.ext.onClick
 import kotlinx.android.synthetic.main.layout_header_bar.view.*
 
 class HeaderBar @JvmOverloads constructor(
@@ -27,14 +30,27 @@ class HeaderBar @JvmOverloads constructor(
 
     private fun initView() {
         View.inflate(context, R.layout.layout_header_bar, this)
+
         mLeftIv.visibility = if (isShowBack) View.VISIBLE else View.GONE
+
         titleText?.let {
             mTitleTv.text = it
         }
+
         rightText?.let {
             mRightTv.text = it
             mRightTv.visibility = View.VISIBLE
         }
+
+        mLeftIv.onClick {
+            if (context is Activity) {
+                (context as Activity).finish()
+            }
+        }
+    }
+
+    fun getRightView(): TextView {
+        return mRightTv
     }
 }
 
