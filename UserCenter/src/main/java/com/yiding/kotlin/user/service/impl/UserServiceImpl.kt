@@ -37,4 +37,13 @@ class UserServiceImpl @Inject constructor() : UserService {
             .convertBoolean()
     }
 
+    override fun editUser(
+        userIcon: String,
+        userName: String,
+        userGender: String,
+        userSign: String
+    ): Observable<UserInfo> {
+        return repository
+            .editUser(userIcon, userName, userGender, userSign).convert()
+    }
 }

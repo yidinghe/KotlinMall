@@ -10,6 +10,7 @@ import com.yiding.kotlin.user.injection.component.DaggerUserComponent
 import com.yiding.kotlin.user.injection.module.UserModule
 import com.yiding.kotlin.user.presenter.LoginPresenter
 import com.yiding.kotlin.user.presenter.view.LoginView
+import com.yiding.kotlin.user.utils.UserPrefsUtils
 import kotlinx.android.synthetic.main.activity_login.*
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
@@ -45,8 +46,8 @@ class LoginActivity : BaseMvpActivity<LoginPresenter>(), LoginView, View.OnClick
                 startActivity<RegisterActivity>()
             }
             R.id.mLoginBtn -> {
-                //mPresenter.login(mMobileEt.text.toString(), mPwdEt.text.toString(), "")
-                startActivity<UserInfoActivity>()
+                mPresenter.login(mMobileEt.text.toString(), mPwdEt.text.toString(), "")
+                //startActivity<UserInfoActivity>()
             }
             R.id.mForgetPwdTv -> {
                 startActivity<ForgetPwdActivity>()
@@ -61,5 +62,7 @@ class LoginActivity : BaseMvpActivity<LoginPresenter>(), LoginView, View.OnClick
 
     override fun onLoginResult(result: UserInfo) {
         toast("登录成功")
+        UserPrefsUtils.putUserInfo(result)
+        startActivity<UserInfoActivity>()
     }
 }

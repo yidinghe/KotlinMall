@@ -12,6 +12,9 @@ import com.yiding.kotlin.user.injection.module.UserModule
 import com.yiding.kotlin.user.presenter.RegisterPresenter
 import com.yiding.kotlin.user.presenter.view.RegisterView
 import kotlinx.android.synthetic.main.activity_register.*
+import org.jetbrains.anko.clearTop
+import org.jetbrains.anko.intentFor
+import org.jetbrains.anko.singleTop
 import org.jetbrains.anko.toast
 
 class RegisterActivity : BaseMvpActivity<RegisterPresenter>(), RegisterView, View.OnClickListener {
@@ -77,5 +80,6 @@ class RegisterActivity : BaseMvpActivity<RegisterPresenter>(), RegisterView, Vie
 
     override fun onRegisterResult(result: String) {
         toast(result)
+        startActivity(intentFor<LoginActivity>().singleTop().clearTop())
     }
 }
