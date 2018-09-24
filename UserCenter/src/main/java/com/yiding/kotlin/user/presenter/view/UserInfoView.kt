@@ -5,4 +5,5 @@ import com.yiding.kotlin.user.data.protocol.UserInfo
 
 interface UserInfoView : BaseView {
 
+    fun onGetUploadTokenResult(result: String)
 }
