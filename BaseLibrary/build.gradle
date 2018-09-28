@@ -80,4 +80,7 @@ dependencies {
     //Banner
     api 'com.youth.banner:banner:1.4.10'
 
+    //Triangle View
+    api 'com.github.shts:TriangleLabelView:1.1.2'
+
 }

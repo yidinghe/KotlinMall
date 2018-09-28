@@ -15,8 +15,6 @@ import kotlinx.android.synthetic.main.fragment_home.*
 
 class HomeFragment : BaseFragment() {
 
-    private lateinit var mHomeBanner: Banner
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -24,11 +22,13 @@ class HomeFragment : BaseFragment() {
     ): View? {
         super.onCreateView(inflater, container, savedInstanceState)
 
-        val rootView = inflater.inflate(R.layout.fragment_home, null)
-        mHomeBanner = rootView.findViewById(R.id.mHomeBanner)
-        initBanner()
+        return inflater.inflate(R.layout.fragment_home, null)
+    }
 
-        return rootView
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initBanner()
+        initNews()
     }
 
     private fun initBanner() {
@@ -38,8 +38,7 @@ class HomeFragment : BaseFragment() {
                 HOME_BANNER_ONE,
                 HOME_BANNER_TWO,
                 HOME_BANNER_THREE,
-                HOME_BANNER_FOUR,
-                HOME_BANNER_FIVE
+                HOME_BANNER_FOUR
             )
         )
         mHomeBanner.setBannerAnimation(Transformer.Accordion)
@@ -47,4 +46,16 @@ class HomeFragment : BaseFragment() {
         mHomeBanner.setIndicatorGravity(BannerConfig.RIGHT)
         mHomeBanner.start()
     }
+
+    private fun initNews() {
+        mNewsFlipperView.setData(
+            arrayOf(
+                "贺唐一家加油加油~",
+                "橘子大人最可爱啊最可爱",
+                "所有人都喜欢和橘子大人聊天~",
+                "橘子大人的魅力已经无法抵挡了!!!"
+            )
+        )
+    }
+
 }
