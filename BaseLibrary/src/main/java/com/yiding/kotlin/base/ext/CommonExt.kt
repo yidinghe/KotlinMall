@@ -3,11 +3,13 @@ package com.yiding.kotlin.base.ext
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageView
 import com.trello.rxlifecycle.LifecycleProvider
 import com.yiding.kotlin.base.data.protocol.BaseResp
 import com.yiding.kotlin.base.rx.BaseFunc
 import com.yiding.kotlin.base.rx.BaseFuncBoolean
 import com.yiding.kotlin.base.rx.BaseSubscriber
+import com.yiding.kotlin.base.utils.GlideUtils
 import com.yiding.kotlin.base.widgets.DefaultTextWatcher
 import rx.Observable
 import rx.android.schedulers.AndroidSchedulers
@@ -42,4 +44,8 @@ fun Button.enable(et: EditText, method: () -> Boolean) {
             this@enable.isEnabled = method()
         }
     })
+}
+
+fun ImageView.loadUrl(url: String) {
+    GlideUtils.loadUrlImage(context, url, this)
 }

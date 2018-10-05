@@ -83,4 +83,7 @@ dependencies {
     //Triangle View
     api 'com.github.shts:TriangleLabelView:1.1.2'
 
+    //Cover Flow
+    api 'com.github.crosswall:Android-Coverflow:release-v1.0.5'
+
 }
