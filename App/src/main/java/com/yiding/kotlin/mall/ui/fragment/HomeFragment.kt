@@ -1,6 +1,7 @@
 package com.yiding.kotlin.mall.ui.fragment
 
 import android.os.Bundle
+import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,7 +9,7 @@ import com.yiding.kotlin.base.ui.fragment.BaseFragment
 import com.yiding.kotlin.base.widgets.BannerImageLoader
 import com.yiding.kotlin.mall.R
 import com.yiding.kotlin.mall.common.*
-import com.youth.banner.Banner
+import com.yiding.kotlin.mall.ui.adapter.HomeDiscountAdapter
 import com.youth.banner.BannerConfig
 import com.youth.banner.Transformer
 import kotlinx.android.synthetic.main.fragment_home.*
@@ -29,6 +30,7 @@ class HomeFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
         initBanner()
         initNews()
+        initDiscount()
     }
 
     private fun initBanner() {
@@ -54,6 +56,24 @@ class HomeFragment : BaseFragment() {
                 "橘子大人最可爱啊最可爱",
                 "所有人都喜欢和橘子大人聊天~",
                 "橘子大人的魅力已经无法抵挡了!!!"
+            )
+        )
+    }
+
+    private fun initDiscount() {
+        val manager = LinearLayoutManager(context)
+        manager.orientation = LinearLayoutManager.HORIZONTAL
+        mHomeDiscountRv.layoutManager = manager
+
+        val discountAdapter = HomeDiscountAdapter(requireActivity())
+        mHomeDiscountRv.adapter = discountAdapter
+        discountAdapter.setData(
+            mutableListOf(
+                HOME_DISCOUNT_ONE,
+                HOME_DISCOUNT_TWO,
+                HOME_DISCOUNT_THREE,
+                HOME_BANNER_FOUR,
+                HOME_DISCOUNT_FIVE
             )
         )
     }

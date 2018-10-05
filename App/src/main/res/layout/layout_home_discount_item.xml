@@ -17,8 +17,8 @@
 
         <jp.shts.android.library.TriangleLabelView
             style="@style/WrapWrap"
+            android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
-            android: ="true"
             app:backgroundColor="@color/common_red"
             app:corner="rightTop"
             app:labelBottomPadding="5.0dip"
