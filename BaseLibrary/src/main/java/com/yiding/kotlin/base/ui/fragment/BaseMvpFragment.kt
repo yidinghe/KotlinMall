@@ -15,7 +15,7 @@ abstract class BaseMvpFragment<T : BasePresenter<*>> : BaseFragment(), BaseView 
 
     @Inject
     lateinit var mPresenter: T
-    private lateinit var mActivityComponent: ActivityComponent
+    lateinit var mActivityComponent: ActivityComponent
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
