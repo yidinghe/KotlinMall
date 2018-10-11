@@ -86,4 +86,7 @@ dependencies {
     //Cover Flow
     api 'com.github.crosswall:Android-Coverflow:release-v1.0.5'
 
+    // Multistate View
+    api 'com.github.Kennyc1012:MultiStateView:1.3.2'
+
 }
