@@ -1,16 +1,20 @@
 package com.yiding.kotlin.base.ext
 
+import android.graphics.drawable.AnimationDrawable
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
+import com.kennyc.view.MultiStateView
 import com.trello.rxlifecycle.LifecycleProvider
+import com.yiding.kotlin.base.R
 import com.yiding.kotlin.base.data.protocol.BaseResp
 import com.yiding.kotlin.base.rx.BaseFunc
 import com.yiding.kotlin.base.rx.BaseFuncBoolean
 import com.yiding.kotlin.base.rx.BaseSubscriber
 import com.yiding.kotlin.base.utils.GlideUtils
 import com.yiding.kotlin.base.widgets.DefaultTextWatcher
+import org.jetbrains.anko.find
 import rx.Observable
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
@@ -48,4 +52,11 @@ fun Button.enable(et: EditText, method: () -> Boolean) {
 
 fun ImageView.loadUrl(url: String) {
     GlideUtils.loadUrlImage(context, url, this)
+}
+
+fun MultiStateView.startLoading() {
+    viewState = MultiStateView.VIEW_STATE_LOADING
+    val loadingView = getView(MultiStateView.VIEW_STATE_LOADING)
+    val animBackground = loadingView!!.find<View>(R.id.loading_anim_view).background
+    (animBackground as AnimationDrawable).start()
 }

@@ -10,14 +10,17 @@ import com.kennyc.view.MultiStateView
 import com.yiding.kotlin.base.ui.adapter.BaseRecyclerViewAdapter
 import com.yiding.kotlin.base.ui.fragment.BaseMvpFragment
 import com.yiding.kotlin.goods.R
+import com.yiding.kotlin.goods.common.GoodsConstant
 import com.yiding.kotlin.goods.data.protocol.Category
 import com.yiding.kotlin.goods.injection.component.DaggerCategoryComponent
 import com.yiding.kotlin.goods.injection.module.CategoryModule
 import com.yiding.kotlin.goods.presenter.CategoryPresenter
 import com.yiding.kotlin.goods.presenter.view.CategoryView
+import com.yiding.kotlin.goods.ui.activity.GoodsActivity
 import com.yiding.kotlin.goods.ui.adapter.SecondCategoryAdapter
 import com.yiding.kotlin.goods.ui.adapter.TopCategoryAdapter
 import kotlinx.android.synthetic.main.fragment_category.*
+import org.jetbrains.anko.support.v4.startActivity
 
 class CategoryFragment : BaseMvpFragment<CategoryPresenter>(), CategoryView {
 
@@ -68,7 +71,7 @@ class CategoryFragment : BaseMvpFragment<CategoryPresenter>(), CategoryView {
         secondAdapter.setOnItemClickListener(object :
             BaseRecyclerViewAdapter.OnItemClickListener<Category> {
             override fun onItemClick(item: Category, position: Int) {
-
+                startActivity<GoodsActivity>(GoodsConstant.KEY_CATEGORY_ID to item.id)
             }
         })
     }
